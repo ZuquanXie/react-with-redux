@@ -1,25 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import App from './component/App';
-import reducers from './reducers/Todo';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory';
+import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
+import App from './container/App'
 
-const store = createStore(reducers);
+const history = createHistory();
+
+const middleware = routerMiddleware(history);
+
+const store = createStore(
+    combineReducers({
+        ...reducers,
+        router: routerReducer
+    }),
+    applyMiddleware(middleware)
+);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
-            <div>
-                <Route path='/' exact render={() => <div>首页</div>} />
-                <Route path="/todo-list" exact component={App} />
-                <Route path="/page-another" exact render={() => <div>另一个页面</div>} />
-                <Link to="/todo-list">TodoList</Link>
-                <Link to="/page-another">另一个页面</Link>
-            </div>
-        </Router>
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
     </Provider>
     , document.getElementById('root')
 );
