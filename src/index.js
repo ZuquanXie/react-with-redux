@@ -8,11 +8,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducers);
 
-let jqScript = document.createElement('script');
-
-jqScript.src = '1111.js';
-document.documentElement.appendChild(jqScript);
-
 ReactDOM.render(
     <Provider store={store}>
         <App />
