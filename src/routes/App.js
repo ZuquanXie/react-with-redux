@@ -1,27 +1,25 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css'
+import Home from './Home'
 import Todo from './Todo'
+import Log from './Log'
 
 const App = ({ state, dispatch }) => {
-    console.log(state, dispatch);
     return (
         <div className="App">
             <div className="App-nav">
                 <span className="App-logo">+</span>
-                <Link to="/" >首页</Link>
-                <Link to="/todo" >TODO</Link>
-                <Link to="/log" >LOG</Link>
+                <NavLink activeClassName="active" to="/" exact >Home</NavLink>
+                <NavLink activeClassName="active" to="/todo" >TODO</NavLink>
+                <NavLink activeClassName="active" to="/log" >LOG</NavLink>
             </div>
             <div className="App-content">
-                <Route path="/todo" component={Todo} />
+                <Route path="/" exact component={Home}/>
+                <Route path="/todo" exact component={Todo} />
+                <Route path="/log" exact component={Log} />
             </div>
-        {/*
-            <Route path="/" component={Home}/>
-
-            <Route path="/log" component={Log} />
-        */}
         </div>
     )
 };

@@ -5,7 +5,12 @@ import Todo from './Todo';
 const TodoList = ({todos, onClickTodo}) => {
     return(
         <ul>
-            {todos.map((todo, index)=><Todo key={index} {...todo} onClick={() => {onClickTodo(index)}} />)}
+            {todos.map((todo, index) => (
+                <Todo key={index}
+                      {...todo}
+                      onClick={() => {onClickTodo(index)}}
+                />
+            ))}
         </ul>
     )
 };

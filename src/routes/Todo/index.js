@@ -1,13 +1,14 @@
+import React from 'react'
 import AddTodo from './AddTodo'
-import Footer from '../../component/Footer'
+import Footer from './Footer'
 import VisibleTodoList from './VisibleTodoList'
 
 const Todo = () => {
     return (
-        <div>
+        <div className="page-todo">
+            <VisibleTodoList />
             <AddTodo />
             <Footer />
-            <VisibleTodoList />
         </div>
     )
 };

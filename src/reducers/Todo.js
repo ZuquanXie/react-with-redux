@@ -22,7 +22,7 @@ const defaultState = {
     ]
 };
 
-const Todo = (state=defaultState, action) => {
+const Todo = (state=defaultState, action, c) => {
     let newState = lodash.cloneDeep(state);
     switch (action.type){
         case ADD_TODO:
